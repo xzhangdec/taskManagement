@@ -1,0 +1,125 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:500);
+
+$color1: #C8DAE6;
+$color2: #5a81a5;
+$color3: white;
+
+$bar-height: 6px;
+$bar-width: 36px;
+
+
+body {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+
+.menu-wrapper {
+  position: relative;
+  margin-top: 38px;
+}
+
+// Menu
+.menu {
+  position: relative;
+  width: $bar-width;
+  height: $bar-height;
+  background-color: $color2;
+  user-select: none;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+  color: $color2;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform:translate3d(0,0,0);
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+  label {
+    cursor: pointer;
+    position: absolute;
+    font-family: 'Raleway', sans-serif;
+    line-height: $bar-height*5;
+    top: -$bar-height*2;
+    left: $bar-width + $bar-height*2;
+  }
+
+  &:hover > ul.nav-links, &.open > ul.nav-links {
+    transition: all 0.25s ease-in-out;
+    opacity: 1;
+    width: $bar-width*5;
+    transform: translateX(15px);
+    pointer-events: auto;
+  }
+
+  &:after, &:before {
+    content: "";
+    position: absolute;
+    width: $bar-width;
+    height: $bar-height;
+    background-color: $color2;
+    transition: all 0.25s ease-in-out;
+  }
+
+  &:after {
+    top: $bar-height*2;
+  }
+
+  &:before {
+    top: -$bar-height*2;
+  }
+
+  &:hover, &.open {
+    background-color: transparent;
+  }
+
+  &:hover::after, &:hover::before, &.open::after, &.open::before {
+    transition: all 0.3s ease-in-out;
+    width: $bar-width/2;
+  }
+
+  &:hover::after, &.open::after {
+    transform: translate($bar-height/2, -7px) rotate(405deg);
+  }
+
+  &:hover::before, &.open::before {
+    transform: translate($bar-height*2 ,17px) rotate(-405deg);
+  }
+
+
+  ul.nav-links {
+    margin: 0;
+    padding: $bar-width 0 0 0;
+    opacity: 0;
+    transform: translateX(-15px);
+    transition: all 0.25s ease-in-out;
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+
+    li {
+      width: 100%;
+      padding: 4px 8px;
+      list-style-type:none;
+      font-family: 'Raleway', sans-serif;
+      text-transform: uppercase;
+      transition: all 0.25s ease-in-out;
+      border-left: 2px solid $color2;
+
+      &:hover, &.active {
+        color: $color3;
+        border-left: 2px solid $color3;
+      }
+    }
+  }
+
+}
+
+

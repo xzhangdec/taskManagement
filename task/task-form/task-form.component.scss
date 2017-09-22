@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,700');
+
+
+
+// Variables
+$radius: 4px;
+
+/*Typography*/
+form label {font-size: .9em;}
+
+/* Base */
+* {
+  box-sizing: border-box;
+}
+
+/* Form */
+form {
+  font-family: "Droid Sans", sans-serif;
+  padding: 1em;
+  color: #686868;
+  background-color: #dbd9d9;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  width: 400px;
+  margin-left: -200px;
+  margin-top: -150px;
+  z-index: 10;
+  border: .1em solid #ddd;
+  border-radius: $radius;
+  box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.7);
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+
+}
+.delete {
+  float:right;
+  background-color: #686868;
+  border: .1em solid #ddd;
+  border-radius: $radius;
+  color:#ddd;
+  &:focus,
+  &:hover {
+    background: #ee2d3e;
+    border-bottom-color: darken(#c8dae6, 7%);
+  }
+  &:active {
+    background: #ee2d3e;
+    border-bottom-color: darken(#c8dae6, 7%);
+  }
+}
+
+#description {
+  height:8em;
+  width:100%;
+  text-indent: .5em;
+  border: .1em solid #ddd;
+  border-radius: $radius;
+  outline-color: #ee2d3e;
+}
+#titleName {width: 100%;}
+.title input,
+.Date input,
+.Submit button,
+select{
+  width: 47%;
+  height: 3em;
+  text-indent: .5em;
+  border: .1em solid #ddd;
+  border-radius: $radius;
+  outline-color: #ee2d3e;
+
+}
+
+#sdate {
+  margin-top: 1em;
+}
+
+.title input,
+.message input,
+button
+{
+  margin-top: 1em;
+  width: 100%;
+}
+.radio,
+.dropdown,
+.message,
+.check,
+.Submit {margin-top: 1em;}
+.dropdown select,
+.message textarea,
+.Submit button {width: 100%;},
+.message textarea {height: 8em;},
+ {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1em;
+  height: 1em;
+  background: #e9e9e9;
+  border-radius: $radius;
+  transition: all .35s ease;
+}
+
+.Submit button {
+  //display: block;
+  //margin: auto;
+  //width: 99.5%;
+  background: #ee2d3e;
+  color: #fff;
+  border: 0;
+  border-bottom: $radius solid darken(#c8dae6, 7%);
+  font-size: 1em;
+  font-weight: bold;
+  &:focus,
+  &:hover {
+    background: #c8dae6;
+    border-bottom-color: darken(#c8dae6, 7%);
+  }
+  &:active {
+    background: #c8dae6;
+    border-bottom-color: darken(#c8dae6, 7%);
+  }
+  &:disabled {
+    background: gray;
+  }
+}

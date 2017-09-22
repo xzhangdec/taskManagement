@@ -1,0 +1,19 @@
+<form [formGroup]="myForm" (submit)="onSave($event)" class="login">
+  <div class="form">
+    <h2>Welcome</h2>
+    <div class="task-info">
+      <div class="input-col">
+        <input id="account" formControlName="account" type="account" placeholder="Username" (keyup)="handleInputError(myForm.controls['account'],'account')">
+        <div class="error-msg" *ngIf="!myForm.controls['account'].valid">{{errorMsgs["account"]}}</div>
+      </div>
+      <div class="input-col">
+
+        <input id="password" formControlName="password" type="password" placeholder="Password" (keyup)="handleInputError(myForm.controls['password'],'password')">
+        <div class="error-msg" *ngIf="!myForm.controls['password'].valid">{{errorMsgs["password"]}}</div>
+      </div>
+    </div>
+    <div class="btn-col">
+      <input type="submit" [disabled]="!myForm.valid" class="submit" value="Sign In">
+    </div>
+  </div>
+</form>

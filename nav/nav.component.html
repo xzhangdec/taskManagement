@@ -1,0 +1,15 @@
+<section>
+  <nav>
+    <ul class="ul">
+      <li [routerLinkActive]="['is-active']">
+        <a [routerLink]="['/main/task']" [queryParams]="{url:'task'}">Task</a>
+      </li>
+      <li [routerLinkActive]="['is-active']">
+      <a [routerLink]="['/main/user']" [queryParams]="{url:'user'}">User</a>
+      </li>
+      <li [routerLinkActive]="['is-active']" id="manage">
+        <a [routerLink]="['/main/manage']" [queryParams]="{url:'manage'}" [preserveQueryParams]="true" [fragment]="'id'">Manage</a>
+      </li>
+    </ul>
+  </nav>
+</section>

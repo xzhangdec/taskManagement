@@ -1,0 +1,30 @@
+<div class="task-detail">
+  <h2>Task Detail</h2>
+  <div *ngIf="selectedTask">
+    <div class="task-detail-body">
+      <div class="task-info">
+        <p><span class="basicTitle">Title</span><br> {{selectedTask.title || 'unknow'}}</p>
+        <p for="textarea"><span class="basicTitle">Description</span> <br>
+          <textarea cols="40" rows="8" name="textarea" id="textarea">{{selectedTask.description || 'unknow'}}</textarea>
+        </p>
+
+        <p><span class="basicTitle">Start-Date</span> <br> {{selectedTask.startDate.slice(0, 10) || 'unknow'}}</p>
+        <p><span class="basicTitle">Due-Date</span> <br> {{selectedTask.dueDate.slice(0, 10) || 'unknow'}}</p>
+
+      </div>
+    </div>
+    <br>
+    <div>
+				<span class="hero" *ngFor="let u of values(selectedTask.userList)">
+					<span class="name"> {{u.name}}</span>
+					<br>
+					<span> {{u.age}}</span>
+				</span>
+    </div>
+    <button (click)="onClick()">Back</button>
+  </div>
+  <div *ngIf="!selectedTask">
+    <h4>No Task selected : (</h4>
+    <button (click)="onClick()">Back</button>
+  </div>
+</div>
