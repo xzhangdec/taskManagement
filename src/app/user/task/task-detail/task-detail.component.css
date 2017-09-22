@@ -1,0 +1,129 @@
+@import url(https://fonts.googleapis.com/css?family=Acme);
+
+.task-detail{
+  font-family: 'Abril Fatface', cursive;
+  border: 1px dotted #fcfcfc;
+  margin-top:4%;
+  margin-bottom:5%;
+  margin-left: 30%;
+  margin-right: 30%;
+  border-radius: 10px;
+  box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.task-detail-body{
+  display: flex;
+  padding: 10px 10%;
+  box-sizing: border-box;
+}
+
+.task-detail-body img{
+  height: 300px;
+  width: 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: auto;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.task-info{
+  flex: 1;
+  text-align: left;
+  list-style: none;
+  display: block;
+  box-shadow: 0px 30px 65px 0px rgba(131, 100, 238, 0.05);
+}
+
+.task-info p {
+  font-size: 22px;
+}
+
+p {
+  font-family: 'Acme', sans-serif;
+  text-align: center;
+}
+span {
+  font-family: 'Acme', sans-serif;
+
+}
+
+.basicTitle {
+  color: #ee5258;
+  font-size: 20px;
+}
+
+textarea {
+  width: 47%;
+  height: 3em;
+  text-indent: .5em;
+  border: .1em dotted #ddd;
+  border-radius: 3px;
+  outline-color: #eebacb;
+  border-radius: 10px;
+}
+
+h1{
+  font-size: 40px;
+  color: white;
+}
+
+h2{
+  width: 100%;
+  display: flex;
+  margin-bottom: 10px;
+  background-image: linear-gradient(45deg, #ff3445, #ee5258);
+  color:#ffffff;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.footer{
+  width: 100%;
+  padding-left: 10%;
+  margin-bottom: 10px;
+}
+
+.user {
+  display: inline-block;
+  background-color: rgba(255, 52, 69, 0.1);
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  color: #ee2d3e;
+  float: left;
+  margin-bottom: 4%;
+  margin-left: 6%;
+  width: 40%;
+
+}
+
+
+button {
+  width: 100%;
+  min-width: 80px;
+  background-image: linear-gradient(45deg, #ff3445, #eebacb);
+  height: 40px;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.name{
+  font-size: 1.125em;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #ffffff;
+  font-family: 'Acme', sans-serif;
+}
+
+h4 {
+  text-align: center;
+  font-family: 'Acme', sans-serif;
+  text-weight: bold;
+  font-size: 20px;
+  color:red;
+}

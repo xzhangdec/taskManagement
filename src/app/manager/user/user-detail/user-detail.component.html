@@ -1,0 +1,30 @@
+<div class="user-detail">
+  <div class="back">
+    <button (click)="onClick()">Back</button>
+  </div>
+  <div class="header clearfix" *ngIf="selectedUser">
+    <h2 class="name">{{selectedUser.name || "unknow"}}</h2>
+  </div>
+  <div class="profile" *ngIf="selectedUser">
+    <img class="avatar"  src = {{selectedUser.imgUrl}}>
+    <ul class="basicInfo">
+      <li class="info">
+        <span class="title">Age  <br></span><span class="infoContent">{{selectedUser.age || 'unknow'}}</span>
+
+      </li>
+      <li class="info">
+        <span class="title">Gender <br></span><span class="infoContent">{{selectedUser.gender || 'unknow'}}</span>
+      </li>
+      <li class="info">
+        <span class="title">Address <br></span><span class="infoContent">{{selectedUser.address}}</span>
+      </li>
+
+
+    </ul>
+    <ul class="task-list" *ngIf="selectedUser.taskList">
+      <li class="list-item" *ngFor="let t of values(selectedUser.taskList)">
+        <span class="item-content"><i class="fa fa-gift" aria-hidden="true"></i>{{t.title}}</span><br><span class="item-title">{{t.description}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

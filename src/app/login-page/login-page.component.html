@@ -1,0 +1,45 @@
+<body>
+
+<div class="container">
+  <div class="backbox">
+    <div class="loginMsg" [class.visibility] = "isLoginVis">
+      <div class="textcontent">
+        <p class="title">Manager?</p>
+        <p>Click here to log In.</p>
+        <button id="switch1" (click)="toggleClass()">LOG IN</button>
+      </div>
+    </div>
+    <div class="signupMsg" [class.visibility] = "isSignupVis">
+      <div class="textcontent">
+        <p class="title">User?</p>
+        <p>Log in here to see all your needed.</p>
+        <button id="switch2" (click)="toggleClass()">LOG IN</button>
+      </div>
+    </div>
+  </div>
+  <div class="frontbox" [class.moving] = "isFrontMove">
+    <form [formGroup]="userForm"  class="login">
+      <div class="login" [class.hide] = "isLoginHide">
+        <h2>USER</h2>
+        <div class="inputbox">
+          <input formControlName="account" type="text" name="email" placeholder="  Username" #username>
+          <input formControlName="password" type="password" name="password" placeholder="  PASSWORD">
+        </div>
+        <p>FORGET PASSWORD?</p>
+        <button type="submit" class="submit" (click)="navToSpecificUser(username)">LOG IN</button>
+      </div>
+    </form>
+    <form [formGroup]="managerForm" class="login">
+      <div class="signup hide" [class.hide] = "isSignupHide">
+        <h2>MANAGE</h2>
+        <div class="inputbox">
+          <input formControlName="account" type="text" name="email" placeholder="  Name" >
+          <input  formControlName="password" type="password" name="password" placeholder="  PASSWORD">
+        </div>
+        <button type="submit" class="submit" [routerLink]="['/manager']" >LOG IN</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+</body>

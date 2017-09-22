@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,700');
+
+
+ul {
+  list-style-type: none;
+  margin-top: 20%;
+  margin-bottom: 6%;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ee2d3e;
+  border-radius:5px;
+
+}
+
+li {
+  float: left;
+  transition: all 200ms ease-in-out;
+
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 30px;
+  text-decoration: none;
+}
+
+#mange {
+  border-left: 2px;
+}
+
+
+
+
+
+section {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  font-family: cursive;
+  font-weight:bold;
+  margin: 0px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+
+
+li.is-active {
+  box-shadow: 0px -4px 0px #b5b5b5 inset;
+  z-index:2;
+  background: rgba(238, 45, 62, 0.1);
+  border-radius:0;
+}
+
+
+li.is-active .notifications {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-animation: note 800ms ease-in-out forwards;
+  animation: note 800ms ease-in-out forwards;
+  -webkit-transform-origin: center 60px;
+  transform-origin: center 60px;
+}
+@-webkit-keyframes note {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.1) rotate(30deg) translateY(50px) rotateX(90deg);
+    transform: scale(0.1) rotate(30deg) translateY(50px) rotateX(90deg);
+  }
+  50% {
+    -webkit-transform: rotate(-10deg) rotateX(-2deg);
+    transform: rotate(-10deg) rotateX(-2deg);
+    opacity: 1;
+  }
+  70% {
+    -webkit-transform: rotate(3deg);
+    transform: rotate(3deg);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes note {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.1) rotate(30deg) translateY(50px) rotateX(90deg);
+    transform: scale(0.1) rotate(30deg) translateY(50px) rotateX(90deg);
+  }
+  50% {
+    -webkit-transform: rotate(-10deg) rotateX(-2deg);
+    transform: rotate(-10deg) rotateX(-2deg);
+    opacity: 1;
+  }
+  70% {
+    -webkit-transform: rotate(3deg);
+    transform: rotate(3deg);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}

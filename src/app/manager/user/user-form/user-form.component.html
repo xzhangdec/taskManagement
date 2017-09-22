@@ -1,0 +1,61 @@
+<form [formGroup]="myForm" (submit)="onSave($event)">
+  <h2>User Form</h2>
+  <input type="button" value="X" class="delete" (click)="stopForm()">
+  <div class="user-detail-body">
+    <div class="user-img">
+      <img [style.background-image]="'url('+ (myForm.controls['imgUrl'].value ||'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWQlEJLSCnHKoJZJhoiciw4YRoazrkKrh-IpRLwo2L4bOcUnoEUg') +')'">
+      <div class="input-col">
+        <label for="imgUrl">Image Url</label>
+        <input id="imgUrl" formControlName="imgUrl" type="text" placeholder="input your image url" (keyup)="handleInputError(myForm.controls['imgUrl'],'imgUrl')">
+        <div class="error-msg" *ngIf="!myForm.controls['imgUrl'].valid">{{errorMsgs["imgUrl"]}}</div>
+      </div>
+      <div class="input-col">
+        <label>Name</label>
+        <input id="name" formControlName="name" type="text" placeholder="input your name" (keyup)="handleInputError(myForm.controls['name'],'name')">
+        <div class="error-msg" *ngIf="!myForm.controls['name'].valid">{{errorMsgs["name"]}}</div>
+      </div>
+
+    </div>
+    <div class="user-info">
+      <div class="input-col">
+        <span for="title">Title</span>
+        <input id="title" formControlName="title" type="text" placeholder="input your title" (keyup)="handleInputError(myForm.controls['title'],'title')">
+        <div class="error-msg" *ngIf="!myForm.controls['title'].valid">{{errorMsgs["title"]}}</div>
+      </div>
+      <span class="moved"></span>
+      <div class="input-col">
+        <label for="age">Age</label>
+        <input id="age" formControlName="age" type="number" placeholder="input your age" (keyup)="handleInputError(myForm.controls['age'],'age')">
+        <div class="error-msg" *ngIf="!myForm.controls['age'].valid">{{errorMsgs["age"]}}</div>
+
+      </div>
+      <div class="input-col">
+        <label>Gender</label>
+        <input type="radio" formControlName="gender" value="Female" (keyup)="handleInputError(myForm.controls['gender'],'gender')">f
+        <input type="radio" formControlName="gender" value="Male" (keyup)="handleInputError(myForm.controls['gender'],'gender')">m
+        <div class="error-msg" *ngIf="!myForm.controls['gender'].valid">{{errorMsgs["gender"]}}</div>
+      </div>
+      <div class="input-col">
+        <label>Address</label>
+        <input type="text" formControlName="address" placeholder="input address" (keyup)="handleInputError(myForm.controls['address'],'address')">
+        <div class="error-msg" *ngIf="!myForm.controls['address'].valid">{{errorMsgs["address"]}}</div>
+      </div>
+      <div class="input-col">
+        <label for="phone">Phone</label>
+        <input id="phone" formControlName="phone" type="text" placeholder="input your phone" (keyup)="handleInputError(myForm.controls['phone'],'phone')">
+        <div class="error-msg" *ngIf="!myForm.controls['phone'].valid">{{errorMsgs["phone"]}}</div>
+
+      </div>
+      <div class="input-col">
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" type="text" placeholder="input your email" (keyup)="handleInputError(myForm.controls['email'],'email')">
+        <div class="error-msg" *ngIf="!myForm.controls['email'].valid">{{errorMsgs["email"]}}</div>
+
+      </div>
+      <br>
+      <div class="Submit">
+        <button type="submit" [disabled]="!myForm.valid">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>
