@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService }   from '../../shared/user.service';
 import { Router } from "@angular/router";
 
-import { ComponentCanDeactivate }  from '../../shared/can.service';
 import { Observable } from "rxjs/Observable";
 import 'rxjs/Rx';
 import {Subscription} from "rxjs/Subscription";
@@ -67,10 +66,11 @@ export class UserComponent implements OnInit {
   }
 
 
-  delUser(id) {
+  delUser(id, locate) {
     this.subscription =
       this.userService.delOneUser(id).subscribe(
       () => {
+        this.userService.delUser_List(locate);
         this.getUsers();
       });
   }

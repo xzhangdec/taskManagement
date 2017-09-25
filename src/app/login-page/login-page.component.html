@@ -18,26 +18,24 @@
     </div>
   </div>
   <div class="frontbox" [class.moving] = "isFrontMove">
-    <form [formGroup]="userForm"  class="login">
-      <div class="login" [class.hide] = "isLoginHide">
-        <h2>USER</h2>
-        <div class="inputbox">
-          <input formControlName="account" type="text" name="email" placeholder="  Username" #username>
-          <input formControlName="password" type="password" name="password" placeholder="  PASSWORD">
-        </div>
-        <p>FORGET PASSWORD?</p>
-        <button type="submit" class="submit" (click)="navToSpecificUser(username)">LOG IN</button>
+    <form [formGroup]="userForm" class="login" [class.hide] = "isLoginHide" (submit)="onSaveUser($event,userName.value)">
+      <h2>LOG IN</h2>
+      <div class="inputbox">
+        <input formControlName="username" type="text" name="email" placeholder="Username" #userName>
+        <input formControlName="passwordU" type="password" name="password" placeholder="Password">
       </div>
+      <p *ngIf="!userForm.valid">INPUT CORRECT USERNAME</p>
+      <button [disabled]="!userForm.valid"> LOG IN</button>
     </form>
-    <form [formGroup]="managerForm" class="login">
-      <div class="signup hide" [class.hide] = "isSignupHide">
-        <h2>MANAGE</h2>
-        <div class="inputbox">
-          <input formControlName="account" type="text" name="email" placeholder="  Name" >
-          <input  formControlName="password" type="password" name="password" placeholder="  PASSWORD">
-        </div>
-        <button type="submit" class="submit" [routerLink]="['/manager']" >LOG IN</button>
+
+    <form [formGroup]="managerForm" class="signup hide" [class.hide] = "isSignupHide" (submit)="onSaveManager($event)">
+      <h2>LOG IN</h2>
+      <div class="inputbox">
+        <input formControlName="managername" type="text" name="email" placeholder="Managername" >
+        <input  formControlName="passwordM" type="password" name="password" placeholder="Password">
       </div>
+      <p *ngIf="!managerForm.valid">INPUT CORRECT NAME</p>
+      <button type="submit"  [disabled]="!managerForm.valid"> <!--[routerLink]="['/manager']"-->LOG IN</button>
     </form>
   </div>
 

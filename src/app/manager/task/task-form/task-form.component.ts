@@ -49,9 +49,11 @@ export class TaskFormComponent implements OnInit {
       this.myForm.value.title,
       this.myForm.value.description,
       this.myForm.value.startDate,
-      this.myForm.value.dueDate
+      this.myForm.value.dueDate,
+      this.myForm.value.title + this.myForm.value.startDate
     )).subscribe((data)=>{
-      this.taskService.taskList.push(new Task(this.myForm.value.title, this.myForm.value.description, this.myForm.value.startDate, this.myForm.value.dueDate));
+      this.taskService.taskList.push(new Task(this.myForm.value.title, this.myForm.value.description, this.myForm.value.startDate, this.myForm.value.dueDate, (this.myForm.value.title + this.myForm.value.startDate)
+      ));
       console.log(data.name);
       console.log(this.taskService.taskList);
     });

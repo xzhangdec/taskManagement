@@ -2,22 +2,33 @@ import {CanLoad, CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot, Rou
 import {Observable} from "rxjs/Observable";
 import {Injectable} from "@angular/core";
 
-
-export interface User{
-  account:string;
-  password:string;
+export interface Manager {
+  managername: string;
+  password: string;
 }
 
-export class CanService{
-  public loginUser:User;
-  constructor(){}
+export class manager_AuthService {
+  public loginManager: Manager;
+  constructor() {}
 }
+
+export interface User {
+  username: string;
+  password: string;
+}
+
+export class user_AuthService {
+  public loginUser: User;
+  constructor() {}
+}
+
 
 @Injectable()
-export class UserCanLoadGuard implements CanLoad{
-  constructor(private canService:CanService, private router:Router){}
-  canLoad(route: Route):Observable<boolean>|boolean{
-    if (this.canService.loginUser) {
+
+export class managerCanLoadGuard implements CanLoad {
+  constructor(private mAService:manager_AuthService, private uAService:user_AuthService, private router:Router) {}
+  canLoad(route: Route): Observable<boolean> | boolean {
+    if (this.mAService.loginManager || this.uAService.loginUser) {
       return true;
     }
     else {

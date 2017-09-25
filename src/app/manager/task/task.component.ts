@@ -34,6 +34,8 @@ export class TaskComponent implements OnChanges, OnInit {
     if (event) {
       return this.taskService.getAllTasks().subscribe(tasks => {
         this.tasks = tasks;
+        console.log('tasks after refresh');
+        console.log(this.tasks);
         this.filteredTasks = tasks;
       });
     }
@@ -76,10 +78,11 @@ export class TaskComponent implements OnChanges, OnInit {
   }
 
   //Delete Tasks
-  delTask(id) {
+  delTask(id, locate) {
     console.log('!!!!!!!!! !!!!!!!!del Task');
     this.taskService.delOneTask(id).subscribe(
       () => {
+        this.taskService.delTask_List(locate);
         this.getTasks();
       })
 
@@ -91,6 +94,7 @@ export class TaskComponent implements OnChanges, OnInit {
     console.log('!!!!!!!!!!!!!!!!! !!!!!!!getAll');
     this.taskService.getAllTasks().subscribe(tasks => {
       this.tasks = tasks;
+      console.log(this.tasks);
       this.filteredTasks = tasks;
     });
 

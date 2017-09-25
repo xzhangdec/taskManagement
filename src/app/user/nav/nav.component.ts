@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { paramSharedService } from '../paramShared_service';
 
 @Component({
   selector: 'app-nav',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  private param: string;
 
-  constructor() { }
+  constructor(private paramService: paramSharedService) {
+    this.param = this.paramService.getParam();
+  }
 
   ngOnInit() {
+    this.param = this.paramService.getParam();
+    console.log(this.param + 'nav');
   }
 
 }

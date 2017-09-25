@@ -25,10 +25,7 @@ export class UserDetailComponent implements OnInit,OnDestroy{
 
   ngOnInit(){
     this.activatedRoute.params.subscribe((params)=> {
-      this.userService.getUserById(params['id']).subscribe(user => {
-        this.selectedUser = user;
-        console.log(this.selectedUser);
-      });
+      this.selectedUser = this.userService.getUser_Phone(params['id']);
     })
   }
 

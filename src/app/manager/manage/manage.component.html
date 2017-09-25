@@ -1,14 +1,13 @@
 <div class="body">
   <ul class="list">
-    <li *ngFor="let t of taskList" (dragover)="dragOverHandler($event)" (drop)="dropHandler($event,t.located, t._id)">
+    <li *ngFor="let t of taskList" (dragover)="dragOverHandler($event)" (drop)="dropHandler($event,t.located, t)">
       <div> {{t.title}}</div>
       <div>
                     <span class="tasklist-hero"  *ngFor="let u of values(t.userList)">
                         <span> {{u.name}}</span>
-                        <button (click)="deleteHero(t.located,u._id)">del</button>
+                        <button (click)="deleteHero(t.located, (u.name+u.phone), u.phone)">del</button>
                     </span>
       </div>
-
     </li>
   </ul>
   <ul class="list">

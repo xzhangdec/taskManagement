@@ -24,11 +24,10 @@ export class TaskDetailComponent implements OnInit,OnDestroy{
   }
 
   ngOnInit(){
-    this.subscribe = this.activatedRoute.params.subscribe((params)=>{
+    this.activatedRoute.params.subscribe((params)=> {
       console.log(params['id']);
-      if(this.taskService.getTaskById(params['id'])!=null){
-         this.taskService.getTaskById(params['id']);
-      }
+      console.log(this.taskService.getTask_located(params['id']));
+      this.selectedTask = this.taskService.getTask_located(params['id']);
     });
   }
 

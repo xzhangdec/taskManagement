@@ -23,7 +23,7 @@
 
   <ul class="projects">
     <li *ngFor="let t of filteredTasks">
-      <span (click)="navToTaskDetail(t._id)"> {{t.title}} => {{t.description}}</span><a (click)="delTask(t._id)">X</a>
+      <span (click)="navToTaskDetail(t.located)"> {{t.title}} => {{t.description}}</span><a (click)="delTask(t._id, t.located)">X</a>
     </li>
   </ul>
 

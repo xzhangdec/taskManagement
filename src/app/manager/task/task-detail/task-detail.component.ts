@@ -16,7 +16,7 @@ export class TaskDetailComponent implements OnInit{
 
 
   onClick(){
-    this.router.navigate(['/manager/task']);
+    this.router.navigate(['/user/task']);
   }
 
   values(obj) : Array<string> {
@@ -25,9 +25,9 @@ export class TaskDetailComponent implements OnInit{
 
   ngOnInit(){
     this.activatedRoute.params.subscribe((params)=> {
-      this.taskService.getTaskById(params['id']).subscribe(task => {
-        this.selectedTask = task;
-      });
+      console.log(params['id']);
+      console.log(this.taskService.getTask_located(params['id']));
+      this.selectedTask = this.taskService.getTask_located(params['id']);
     })
 
   }

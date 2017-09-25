@@ -46,6 +46,24 @@ export class UserService{
     return null;
   }
 
+  getUser_Phone(locate) {
+    for(let u of this.userList){
+      if(locate == (u.name+u.phone)){
+        return u;
+      }
+    }
+    return null;
+  }
+
+  delUser_List(locate) {
+    for(let i in this.userList){
+      if(locate == (this.userList[i].name+this.userList[i].phone)){
+        this.userList.splice(parseInt(i), 1);
+      }
+    }
+    return null;
+  }
+
   getAllUsers(): Observable<any>{
     return this.http.get(`${this.API}/users`).map(res => res.json());
   }

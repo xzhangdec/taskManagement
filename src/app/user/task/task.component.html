@@ -1,13 +1,14 @@
 <body>
 <main class="container">
   <input type="text" id="filterTask" placeholder="Enter keywords and hit enter to filter" >
+
   <select class="ui fluid search dropdown" name="batch name" #batch (change)="callType(batch.value)">
     <option *ngFor="let type of types" [value] = "type.id" >{{type.name}}</option>
   </select>
 
   <ul class="projects">
-    <li >
-      <span></span><a>X</a>
+    <li *ngFor="let t of filteredTasks">
+      <span (click)="navToTaskDetail(t.located)"> {{t.title}} => {{t.description}}</span><a (click)="delTask(t._id, t.located)">X</a>
     </li>
   </ul>
 </main>

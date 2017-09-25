@@ -1,7 +1,10 @@
 import {Component, OnInit,OnDestroy, EventEmitter} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, Validators, FormGroup, FormControl, AbstractControl} from '@angular/forms';
-import {CanService} from "../shared/can.service";
+import {manager_AuthService, user_AuthService} from "../shared/auth.service";
+import { UserService } from '../shared/user.service';
+import { User } from "../shared/user.model";
+
 
 @Component({
   selector: 'app-login-page',
@@ -15,8 +18,10 @@ export class LoginPageComponent implements OnInit {
   private managerForm:FormGroup;
   private errors:{[key:string]:Array<any>} = {};
   private errorMsgs:{[key:string]:string} = {};
+  private Users: User[] = [];
+  private userName = [];
 
-  constructor(private formBuilder:FormBuilder, private canService:CanService, private router:Router){}
+  constructor(private formBuilder:FormBuilder, private userService: UserService, private mAService:manager_AuthService, private uAService:user_AuthService, private router:Router){}
 
   isLoginVis: boolean = false;
   isFrontMove: boolean = false;
@@ -34,37 +39,51 @@ export class LoginPageComponent implements OnInit {
   }
 
   navToSpecificUser(id) {
-    this.router.navigate(['/user', id.value]);
+    this.router.navigate(['/user',id.value]);
   }
 
   ngOnInit(){
     this.userForm = this.formBuilder.group({
-      'account':['',[Validators.required, Validators.minLength(4)]],
-      'password':['',[Validators.required, Validators.maxLength(10)]],
+      'username':['',[Validators.required, Validators.minLength(4)]],
+      'passwordU':['',[Validators.required, Validators.maxLength(10)]],
     });
     this.managerForm = this.formBuilder.group({
-      'account':['',[Validators.required, Validators.minLength(4)]],
-      'password':['',[Validators.required, Validators.maxLength(10)]],
+      'managername':['',[Validators.required, Validators.minLength(4)]],
+      'passwordM':['',[Validators.required, Validators.maxLength(10)]],
     });
     this.registerInputCheck();
+    this.getUsers();
   }
 
-  onSaveUser(ev){
-    if(this.userForm.value['accountUser']=='root'){
-      this.canService.loginUser = {account:this.userForm.value['accountUser'], password:this.userForm.value['passwordUser']};
-      this.router.navigate(['/user']);
+  getUsers() {
+    this.userService.getAllUsers().subscribe(users => {
+      console.log(users);
+      this.Users = users;
+      for (let item of this.Users) {
+        this.userName.push(item["name"]);
+      }
+      console.log(this.userName);
+      return this.userName;
+    });
+  }
+
+
+  onSaveUser(ev, id){
+    if(this.userName.indexOf(this.userForm.value['username']) > -1){
+      this.uAService.loginUser = {username: this.userForm.value['username'], password:this.userForm.value['passwordU']};
+      this.router.navigate(['/user',id]);
     }
   }
 
   onSaveManager(ev){
-    if(this.managerForm.value['accountM']=='root'){
-      this.canService.loginUser = {account:this.managerForm.value['accountM'], password:this.managerForm.value['passwordM']};
+    if(this.managerForm.value['managername']=='root'){
+      this.mAService.loginManager = {managername:this.managerForm.value['managername'], password:this.managerForm.value['passwordM']};
       this.router.navigate(['/manager']);
     }
   }
 
   registerInputCheck(){
-    this.errors['accountM'] = [
+    this.errors['managername'] = [
       {key:'required', msg:'* account required!'},
       {key:'minlength', msg:'* account is too short!'},
     ];
@@ -72,11 +91,11 @@ export class LoginPageComponent implements OnInit {
       {key:'required', msg:'* password required!'},
       {key:'maxlength', msg:'* password is to long!'}
     ];
-    this.errors['accountUser'] = [
+    this.errors['username'] = [
       {key:'required', msg:'* account required!'},
       {key:'minlength', msg:'* account is too short!'},
     ];
-    this.errors['passwordUser'] = [
+    this.errors['passwordU'] = [
       {key:'required', msg:'* password required!'},
       {key:'maxlength', msg:'* password is to long!'}
     ];

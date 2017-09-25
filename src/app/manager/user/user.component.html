@@ -11,7 +11,7 @@
 
   <ul class="projects">
     <li *ngFor="let u of filteredUsers">
-      <span (click)="navToHeroDetail(u._id)"> {{u.name}}</span> <a (click)="delUser(u._id)">X</a>
+      <span (click)="navToHeroDetail((u.name+u.phone))"> {{u.name}}</span> <a (click)="delUser(u._id, (u.name+u.phone))">X</a>
     </li>
   </ul>
 

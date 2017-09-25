@@ -31,9 +31,10 @@ export class TaskService {
   //Add one task to the API
   addTask(newTask: Task): Observable<any> {
     console.log('add started');
-    newTask.located = this.taskId;
-    this.taskId = this.taskId + 1;
+    //newTask.located = this.taskId;
+    //this.taskId = this.taskId + 1;
     console.log(newTask);
+    console.log(this.taskList);
     return this.http.post(`${this.API}/tasks`, newTask);
   }
 
@@ -41,6 +42,26 @@ export class TaskService {
   tasksGet():Array<Task> {
     console.log("tasksGet");
     console.log(this.taskList);
+    return this.taskList;
+  }
+
+  //find task by located
+  getTask_located(locate) {
+    for (let i in this.taskList) {
+      if(this.taskList[i].located == locate) {
+          return this.taskList[i];
+      }
+    }
+  }
+
+  //delete task in taskList
+  delTask_List(locate) {
+    for (let i in this.taskList) {
+      if(this.taskList[i].located == locate) {
+        this.taskList.splice(parseInt(i), 1);
+      }
+    }
+    this.taskList = this.taskList;
     return this.taskList;
   }
 
@@ -56,8 +77,8 @@ export class TaskService {
   }
 
   //Get task by Name
-  getTaskByName(name) {
-    return this.http.get(`${this.API}/get_task_by_name/`+ name).map(res => res.json());
+  getUserTasks(name) {
+    return this.http.get(`${this.API}/get_user_tasks_by_name/`+ name).map(res => res.json());
   }
 /*
   //Update one person to the API

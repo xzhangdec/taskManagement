@@ -26,6 +26,8 @@ export class ManageComponent{
 
     this.userList = this.userService.usersGet();
     this.taskList = this.taskService.tasksGet();
+    console.log("manage task list => " + this.taskList[0]);
+
   }
 //Constructor end
 
@@ -38,12 +40,18 @@ export class ManageComponent{
   dragOverHandler(ev){
     ev.preventDefault();
   }
-  dropHandler(ev,id, task_oid) {
+  dropHandler(ev,locate, t) {
     ev.preventDefault();
     let u = JSON.parse(ev.dataTransfer.getData('text/plain'));
-    this.taskList[id].addNewUser(u);
-    this.userService.get_User_Id(u._id).addNewTask(this.taskList[id]);
-    this.http.put(`${this.API}/assign_task/` + task_oid, u).map(res => res.json()).subscribe();
+    console.log(u);
+    console.log(t._id);
+
+    //console.log(this.taskService.getTask_located(locate));
+    this.taskService.getTask_located(locate).addNewUser(u);
+    //this.taskList[id].addNewUser(u);
+    this.userService.get_User_Id(u._id).addNewTask(this.taskService.getTask_located(locate));
+    this.http.put(`${this.API}/push_TasksId/` + u._id, t).map(res => res.json()).subscribe();
+    //this.http.put(`${this.API}/assign_task/` + t._id, u).map(res => res.json()).subscribe();
   }
     dragStartHandler(ev, u) {
       ev.dataTransfer.dropEffect = 'copy';
@@ -51,9 +59,12 @@ export class ManageComponent{
       ev.dataTransfer.setData('text/plain',  JSON.stringify(u));
     }
 
-    deleteHero(tId, uId){
-      delete this.taskList[tId].userList[uId];
-      delete this.userList[uId].taskList[tId];
+    deleteHero(tlocate, umark, uphone){
+      console.log(this.taskList);
+      console.log(this.userList);
+      delete this.taskService.getTask_located(tlocate).userList[umark];
+      delete this.userService.getUser_Phone(uphone).taskList[tlocate];
+      //delete this.userList[uId].taskList[tId];
     }
 
 }

@@ -14,14 +14,15 @@ router.post('/users', (req, res)=> {
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     const user = {
-      age: req.body.age,
-      gender: req.body.gender,
-      imgUrl: req.body.imgUrl,
-      name: req.body.name,
-      title: req.body.title,
-      address: req.body.address,
-      phone: req.body.phone,
-      email: req.body.email,
+      "name": req.body.name,
+      "age": req.body.age,
+      "gender": req.body.gender,
+      "imgUrl": req.body.imgUrl,
+      "address": req.body.address,
+      "title": req.body.title,
+      "phone": req.body.phone,
+      "email": req.body.email,
+      "tasksId": []
     };
 
     db.collection("users").insertOne(user, function(err, ret) {
@@ -65,6 +66,21 @@ router.route('/users/:user_id')
     });
   });
 
+//Get user by name
+router.route('/get_user_tasks_by_name/:user_name')
+  .get((req, res) => {
+    MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+      db.collection("users").findOne({ "name": req.params.user_name}, function(err, user) {
+        if (err) throw err;
+        db.close();
+        res.status(200).json(user["tasksId"]);
+      });
+    });
+  });
+
+
+
 router.route('/users/:user_id')
 //Get specific User
   //Update a User
@@ -80,7 +96,8 @@ router.route('/users/:user_id')
         "address": req.body.address,
         "title": req.body.title,
         "phone": req.body.phone,
-        "email": req.body.email
+        "email": req.body.email,
+        "tasksId": []
       };
       db.collection("users").updateOne(query, newVal, function (err, ret) {
         if (err) throw err;
@@ -101,6 +118,28 @@ router.route('/users/:user_id')
       });
     });
   });
+
+
+//Push Array:
+
+router.route('/push_TasksId/:user_id')
+  .put((req, res) => {
+    MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+      var query = {"_id": new ObjectId(req.params.user_id)};
+      var newVal = {
+        $push:{
+          "tasksId":req.body._id
+        }
+      };
+      db.collection("users").update(query, newVal, function (err, ret) {
+        if (err) throw err;
+        db.close();
+        res.status(200).json({message: req.body._id});
+      });
+    });
+  });
+
 
 /**
  * Task related

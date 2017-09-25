@@ -118,6 +118,16 @@ body{
   right:30px;
   bottom: 30px;
   cursor: pointer;
+
+}
+
+
+.signup button:disabled {
+  background-color: gray;
+}
+
+login button:disabled {
+  background-color: gray;
 }
 
 /* Fade In & Out*/
